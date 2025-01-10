@@ -1,0 +1,10 @@
+1002
+
+Adults: 11
+Children: 11
+Total: RM 616000
+2003
+
+Adults: 231
+Children: 11
+Total: RM 2904000

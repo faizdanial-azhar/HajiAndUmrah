@@ -310,30 +310,12 @@ public class UserBooking {
     }
 
   public static void PrintBookings() {
-    
       try (FileWriter printBooking = new FileWriter("printBooking.txt");
          PrintWriter writer = new PrintWriter(printBooking)) {
           for (int i = 0; i < bookingCount; i++) {
-              switch (bookingPackageId[i]) {
-                    case 1001 ->
-                        DatabasePackage.getHajiPackage1();
-                    case 1002 ->
-                        DatabasePackage.getHajiPackage2();
-
-                    case 1003 ->
-                        DatabasePackage.getHajiPackage3();
-
-                    case 2001 ->
-                        DatabasePackage.getUmrahPackage1();
-
-                    case 2002 ->
-                        DatabasePackage.getUmrahPackage2();
-
-                    case 2003 ->
-                        DatabasePackage.getUmrahPackage3();
-
-                }
-             writer.println(DatabasePackage.packageName))
+              writer.println("--------------------------");
+              writer.println("Booking number -- "+(i+1));
+              writer.println("Package id:"+bookingPackageId[i]); 
               writer.println(bookings[i]);
           }
           System.out.println("Your booking have been printed");

@@ -1,0 +1,12 @@
+-----------------------------
+BOOKING STATISTICS
+-----------------------------
+HAJI PACKAGES:
+Package 1: 0 bookings
+Package 2: 1 bookings
+Package 3: 0 bookings
+
+UMRAH PACKAGES:
+Package 1: 1 bookings
+Package 2: 0 bookings
+Package 3: 1 bookings

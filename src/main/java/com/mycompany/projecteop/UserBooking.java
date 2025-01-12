@@ -26,36 +26,41 @@ public class UserBooking {
         int numberOfChildren = NumberOfChildren();
         int totalAmount = CalculateTotalAmount(adultPrice, numberOfAdult, childrenPrice, numberOfChildren);
         boolean paymentSuccessfull = PaymentMethod(totalAmount, adultPrice, childrenPrice, numberOfAdult, numberOfChildren);
-        if (paymentSuccessfull){
-        PrintReceipt(packageId, totalAmount, numberOfAdult, numberOfChildren);
-        if (bookingCount < bookings.length) {
+        if (paymentSuccessfull) {
+            PrintReceipt(packageId, totalAmount, numberOfAdult, numberOfChildren);
+            if (bookingCount < bookings.length) {
 
-            String bookingDetails = "\nAdults: " + numberOfAdult + "\nChildren: " + numberOfChildren + "\nTotal: RM " + totalAmount;
-            bookingPackageId[bookingCount] = packageId;
-            bookings[bookingCount] = bookingDetails;
-            bookingCount++;
-            
-            AdminManagement.updateBookingStatistics(packageId); 
-            MainMenu.mainMenu();
-        } else {
-            System.out.println("Booking list is full! Unable to add more bookings.");
-        }}
-       
+                String bookingDetails = "\nAdults: " + numberOfAdult + "\nChildren: " + numberOfChildren + "\nTotal: RM " + totalAmount;
+                bookingPackageId[bookingCount] = packageId;
+                bookings[bookingCount] = bookingDetails;
+                bookingCount++;
+
+                AdminManagement.updateBookingStatistics(packageId);
+                MainMenu.mainMenu();
+            } else {
+                System.out.println("Booking list is full! Unable to add more bookings.");
+            }
+        }
+
     }
 
     public static void SelectPackage() {
         Scanner input = new Scanner(System.in);
-        System.out.println("-----------------------------");
-        System.out.println("1-- Haji Package\n2-- Umrah Package");
-        System.out.println("-----------------------------");
-        System.out.print("(Haji / Umrah):");
-        int choice = input.nextInt();
-        if (choice == 1) {
-            PackageHaji();
-        } else if (choice == 2) {
-            PackageUmrah();
-        }
 
+        while (true) {
+
+            System.out.print("(Haji -- H / Umrah - U):");
+            String choice = input.next();
+            if (choice.equalsIgnoreCase("H")) {
+                PackageHaji();
+                break;
+            } else if (choice.equalsIgnoreCase("U")) {
+                PackageUmrah();
+                break;
+            } else {
+                System.out.println("*** Invalid choice. Please Enter Valid Choice. ***");
+            }
+        }
     }
 
     public static void PackageHaji() {
@@ -64,6 +69,14 @@ public class UserBooking {
         int adultPrice;
         int childrenPrice;
         System.out.println("---------------------------------------------------------------");
+
+        System.out.println("HAJI PACKAGES:\n");
+        DatabasePackage.getHajiPackage1().displayPackage();
+        System.out.println();
+        DatabasePackage.getHajiPackage2().displayPackage();
+        System.out.println();
+        DatabasePackage.getHajiPackage3().displayPackage();
+        System.out.println("---------------------------------------------------------------");
         System.out.println("1.Haji 1st Package   2.Haji 2nd Package   3.Haji 3rd Package");
         System.out.println("---------------------------------------------------------------");
         do {
@@ -71,7 +84,7 @@ public class UserBooking {
             choice = input.nextInt();
 
             if (choice != 1 && choice != 2 && choice != 3) {
-                System.out.println("Invalid package pls enter valid package!");
+                System.out.println("*** Invalid package pls enter valid package! ***");
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);
@@ -82,6 +95,7 @@ public class UserBooking {
                 adultPrice = DatabasePackage.getHajiPackage1().getAdultPrice();
                 childrenPrice = DatabasePackage.getHajiPackage1().getAdultPrice();
                 HandlePayments(1001, adultPrice, childrenPrice);
+                break;
             }
 
             case 2 -> {
@@ -89,16 +103,15 @@ public class UserBooking {
                 adultPrice = DatabasePackage.getHajiPackage2().getAdultPrice();
                 childrenPrice = DatabasePackage.getHajiPackage2().getAdultPrice();
                 HandlePayments(1002, adultPrice, childrenPrice);
+                break;
             }
             case 3 -> {
                 DatabasePackage.getHajiPackage3().displayPackage();
                 adultPrice = DatabasePackage.getHajiPackage3().getAdultPrice();
                 childrenPrice = DatabasePackage.getHajiPackage3().getAdultPrice();
                 HandlePayments(1003, adultPrice, childrenPrice);
+                break;
             }
-
-            default ->
-                System.out.println("Not A valid Package");
 
         }
         System.out.println("-----------------------------------");
@@ -110,6 +123,13 @@ public class UserBooking {
         int adultPrice;
         int childrenPrice;
         System.out.println("---------------------------------------------------------------");
+        System.out.println("UMRAH PACKAGES:\n");
+        DatabasePackage.getUmrahPackage1().displayPackage();
+        System.out.println();
+        DatabasePackage.getUmrahPackage2().displayPackage();
+        System.out.println();
+        DatabasePackage.getUmrahPackage3().displayPackage();
+        System.out.println("---------------------------------------------------------------");
         System.out.println("1.Umrah 1st Package   2.Umrah 2nd Package   3.Umrah 3rd Package");
         System.out.println("---------------------------------------------------------------");
         do {
@@ -117,7 +137,7 @@ public class UserBooking {
             choice = input.nextInt();
 
             if (choice != 1 && choice != 2 && choice != 3) {
-                System.out.println("Invalid package pls enter valid package!");
+                System.out.println("*** Invalid package pls enter valid package! ***");
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);
@@ -153,8 +173,10 @@ public class UserBooking {
         Scanner input = new Scanner(System.in);
         String choice;
         do {
+            System.out.println("----------------------------------------------------");
             System.out.print("Continue to Payment Gateway (Y for yes / N for no): ");
             choice = input.next();
+            System.out.println("----------------------------------------------------");
 
             if (choice.equalsIgnoreCase("y")) {
                 break;
@@ -163,7 +185,7 @@ public class UserBooking {
                 UserBooking.SelectPackage();
 
             } else {
-                System.out.println("Invalid option, Please enter valid option)");
+                System.out.println("*** Invalid option, Please enter valid option ***");
             }
 
         } while (!choice.equalsIgnoreCase("y") && !choice.equalsIgnoreCase("n"));
@@ -171,19 +193,42 @@ public class UserBooking {
     }
 
     public static int NumberOfAdult() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Number of Adults: ");
-        int numberOfAdults = input.nextInt();
+        int numberOfAdults = 0;
+        boolean choice = true;
+        while (choice) {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Number of Adults: ");
+            numberOfAdults = input.nextInt();
+            if (numberOfAdults < 0) {
+                System.out.println("Number Of Adults should not be negative.");
+
+            } else {
+                break;
+            }
+
+        }
+
         return numberOfAdults;
     }
 
     public static int NumberOfChildren() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Number of Children:");
+        int numberOfChildren = 0;
+        boolean choice = true;
+        while (choice) {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Number of Children: ");
+            numberOfChildren = input.nextInt();
+            if (numberOfChildren < 0) {
+                System.out.println("Number Of Children should not be negative.");
 
-        int numberOfChildren = input.nextInt();
+            } else {
+                break;
+
+            }
+
+        }
+
         return numberOfChildren;
-
     }
 
     public static int CalculateTotalAmount(int adultPrice, int numberOfAdults, int childrenPrice, int numberOfChildren) {
@@ -204,13 +249,24 @@ public class UserBooking {
         int paymentMethod = input.nextInt();
 
         if (paymentMethod == 1 || paymentMethod == 2 || paymentMethod == 3) {
-            System.out.println("Amount To Pay: " + totalAmount);
+            System.out.println(">>> Amount To Pay:RM " + totalAmount);
             System.out.print("Y to Pay / N to Cancel : ");
 
             String choice = input.next();
+            int innerChoice;
             if (choice.equalsIgnoreCase("n")) {
-                System.out.println("1. Change Payment Method\n2. Change Package\n3. Main Menu");
-                int innerChoice = input.nextInt();
+                while (true) {
+
+                    System.out.println("--------------------------------------");
+                    System.out.println("1. Change Payment Method\n2. Change Package\n3. Main Menu");
+                    System.out.print("Choice: ");
+                    innerChoice = input.nextInt();
+                    if (innerChoice == 1 || innerChoice == 2 || innerChoice == 3) {
+                        break;
+                    }
+                    System.out.println("*** Invalid Choice. Please enter valid choice. ***");
+                }
+                System.out.println("--------------------------------------");
 
                 switch (innerChoice) {
                     case 1 -> {
@@ -231,14 +287,14 @@ public class UserBooking {
                 }
             }
         }
+
         return true;
     }
-    
 
     public static void PrintReceipt(int packageId, int totalAmount, int numberOfAdults,
             int numberOfChildren) {
         System.out.println("------------------------------------------------");
-        System.out.println("YOUR PAYMENT SUCCESSFULLY MADE!");
+        System.out.println("=== YOUR PAYMENT SUCCESSFULLY MADE! ===");
         System.out.println("-THANK YOU FOR BOOKING WITH US-");
         switch (packageId) {
             case 1001 -> {
@@ -269,12 +325,12 @@ public class UserBooking {
         }
         System.out.println("------------------------------------------------");
         System.out.println("Redirecting you to Main Menu ....");
-       
+
     }
 
     public static void DisplayBookings() {
 
-        System.out.println("Your Bookings:");
+        System.out.println("=== Your Bookings ===");
         if (bookingCount == 0) {
             System.out.println("No bookings made yet.");
         } else {
@@ -309,20 +365,20 @@ public class UserBooking {
         }
     }
 
-  public static void PrintBookings() {
-      try (FileWriter printBooking = new FileWriter("printBooking.txt");
-         PrintWriter writer = new PrintWriter(printBooking)) {
-          for (int i = 0; i < bookingCount; i++) {
-              writer.println("--------------------------");
-              writer.println("Booking number -- "+(i+1));
-              writer.println("Package id:"+bookingPackageId[i]); 
-              writer.println(bookings[i]);
-          }
-          System.out.println("Your booking have been printed");
-      } catch (IOException e) {
-          System.err.println("An error occurred while writing to the file: " + e.getMessage());
-      }
-      
-      MainMenu.mainMenu();
-      
-  }}
+    public static void PrintBookings() {
+        try (FileWriter printBooking = new FileWriter("printBooking.txt"); PrintWriter writer = new PrintWriter(printBooking)) {
+            for (int i = 0; i < bookingCount; i++) {
+                writer.println("--------------------------");
+                writer.println("Booking number -- " + (i + 1));
+                writer.println("Package id:" + bookingPackageId[i]);
+                writer.println(bookings[i]);
+            }
+            System.out.println("Your booking have been printed");
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+
+        MainMenu.mainMenu();
+
+    }
+}

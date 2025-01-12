@@ -7,6 +7,7 @@ package com.mycompany.projecteop;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -236,60 +237,78 @@ public class UserBooking {
         int totalAmount = (numberOfAdults * adultPrice) + (numberOfChildren * childrenPrice);
         return totalAmount;
     }
-
-    public static boolean PaymentMethod(int totalAmount, int adultPrice, int childrenPrice, int numberOfAdult, int numberOfChildren) {
-
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("PAYMENT METHODS :");
-        System.out.println("Total Payments for (" + numberOfAdult + " Adults + " + numberOfChildren + " Children): RM " + totalAmount);
-
-        System.out.println("1 = Online Banking\n2 = Debit Card(Visa/Mastercard)\n3 = E-wallet ");
-        System.out.print("Please choose your payment methods:");
-        int paymentMethod = input.nextInt();
-
-        if (paymentMethod == 1 || paymentMethod == 2 || paymentMethod == 3) {
-            System.out.println(">>> Amount To Pay:RM " + totalAmount);
-            System.out.print("Y to Pay / N to Cancel : ");
-
-            String choice = input.next();
-            int innerChoice;
-            if (choice.equalsIgnoreCase("n")) {
-                while (true) {
-
-                    System.out.println("--------------------------------------");
-                    System.out.println("1. Change Payment Method\n2. Change Package\n3. Main Menu");
-                    System.out.print("Choice: ");
-                    innerChoice = input.nextInt();
-                    if (innerChoice == 1 || innerChoice == 2 || innerChoice == 3) {
-                        break;
+public static boolean PaymentMethod(int totalAmount, int adultPrice, int childrenPrice, int numberOfAdult, int numberOfChildren) {
+    Scanner input = new Scanner(System.in);
+    int paymentMethod;
+    
+    try {
+        while (true) {
+            System.out.println("PAYMENT METHODS :");
+            System.out.println("Total Payments for (" + numberOfAdult + " Adults + " + numberOfChildren + " Children): RM " + totalAmount);
+            System.out.println("1 = Online Banking\n2 = Debit Card(Visa/Mastercard)\n3 = E-wallet ");
+            System.out.print("Please choose your payment methods: ");
+            
+            try {
+                paymentMethod = input.nextInt();
+                input.nextLine(); // Clear buffer
+                
+                if (paymentMethod >= 1 && paymentMethod <= 3) {
+                    System.out.println(">>> Amount To Pay: RM " + totalAmount);
+                    System.out.print("Y to Pay / N to Cancel : ");
+                    String choice = input.nextLine().trim();
+                    
+                    if (choice.equalsIgnoreCase("n")) {
+                        System.out.println("--------------------------------------");
+                        System.out.println("1. Change Payment Method\n2. Change Package\n3. Main Menu");
+                        
+                        while (true) {
+                            try {
+                                System.out.print("Choice: ");
+                                int innerChoice = input.nextInt();
+                                System.out.println("--------------------------------------");
+                                
+                                switch (innerChoice) {
+                                    case 1 -> {
+                                        return PaymentMethod(totalAmount, adultPrice, childrenPrice, numberOfAdult, numberOfChildren);
+                                    }
+                                    case 2 -> {
+                                        SelectPackage();
+                                        return false;
+                                    }
+                                    case 3 -> {
+                                        MainMenu.mainMenu();
+                                        return false;
+                                    }
+                                    default -> {
+                                        System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+                                    }
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Please enter a valid number.");
+                                input.nextLine(); // Clear buffer
+                            }
+                        }
+                    } else if (choice.equalsIgnoreCase("y")) {
+                        return true;
+                    } else {
+                        System.out.println("Invalid choice. Please enter Y or N.");
                     }
-                    System.out.println("*** Invalid Choice. Please enter valid choice. ***");
+                } else {
+                    System.out.println("Invalid payment method. Please choose 1, 2, or 3.");
                 }
-                System.out.println("--------------------------------------");
-
-                switch (innerChoice) {
-                    case 1 -> {
-                        return PaymentMethod(totalAmount, adultPrice, childrenPrice, numberOfAdult, numberOfChildren);
-                    }
-                    case 2 -> {
-                        SelectPackage();
-                        return false;
-                    }
-                    case 3 -> {
-                        MainMenu.mainMenu();
-                        return false;
-                    }
-                    default -> {
-                        System.out.println("Invalid choice. Please try again.");
-                        return false;
-                    }
-                }
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                input.nextLine(); // Clear buffer
             }
         }
-
-        return true;
+    } catch (Exception e) {
+        System.out.println("An unexpected error occurred: " + e.getMessage());
+        return false;
+    } finally {
+        // Don't close the Scanner here as it might be needed elsewhere
     }
+}
+
 
     public static void PrintReceipt(int packageId, int totalAmount, int numberOfAdults,
             int numberOfChildren) {
@@ -327,6 +346,7 @@ public class UserBooking {
         System.out.println("Redirecting you to Main Menu ....");
 
     }
+
 
     public static void DisplayBookings() {
 

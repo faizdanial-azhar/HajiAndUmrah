@@ -8,6 +8,7 @@ package com.mycompany.projecteop;
  *
  * @author faizd
  */
+//ADAM NAEMAN
 public class ClientDetails {
     private static String username;
     private static String password;

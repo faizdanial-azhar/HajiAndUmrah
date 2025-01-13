@@ -10,6 +10,7 @@ import java.util.Scanner;
  *
  * @author faizd
  */
+//AMMAR FAIZ 
 public class MainMenu {
 
     public static void mainMenu() {
@@ -20,7 +21,7 @@ public class MainMenu {
         while (true) {
            System.out.println("--------------------------------------");
 
-            System.out.print("Choose option: ");
+                System.out.print("Choose option: ");
             int choice = input.nextInt();
             System.out.println("--------------------------------------");
             if (choice == 1) {
@@ -30,10 +31,10 @@ public class MainMenu {
                 DeleteBooking.handleDeleteBooking();
                 break;
             } else if (choice == 3) {
-                BookingLists.BookingLists();
+                BookingLists.HandleDisplayBookings();
                 break;
             } else if (choice == 4) {
-                UserBooking.PrintBookings();
+                PrintBookings.PrintBookings();
                 break;
             } else if (choice == 5) {
                 Account.AccountSignIn();

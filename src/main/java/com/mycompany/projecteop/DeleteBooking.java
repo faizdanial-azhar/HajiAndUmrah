@@ -4,12 +4,14 @@
  */
 package com.mycompany.projecteop;
 
+
 import java.util.Scanner;
 
 /**
  *
  * @author adamnaeman
  */
+//ADAM ISKANDAR
 public class DeleteBooking {
     public static void handleDeleteBooking() {
         Scanner input = new Scanner(System.in);
@@ -21,7 +23,7 @@ public class DeleteBooking {
         }
         
         // Display all current bookings
-        UserBooking.DisplayBookings();
+        BookingLists.DisplayBookings();
         
         System.out.println("\nDELETE BOOKING");
         System.out.println("-----------------------------");

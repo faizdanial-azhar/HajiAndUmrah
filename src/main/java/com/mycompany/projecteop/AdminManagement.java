@@ -13,6 +13,7 @@ import java.util.Scanner;
  *
  * @author adamnaeman
  */
+//ADAM NAEMAN
 public class AdminManagement {
 
     private static final String ADMIN_USERNAME = "admin";

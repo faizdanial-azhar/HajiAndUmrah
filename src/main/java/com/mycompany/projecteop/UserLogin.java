@@ -6,10 +6,7 @@ package com.mycompany.projecteop;
 
 import java.util.Scanner;
 
-/**
- *
- * @author faizd
- */
+
 //ADAM NAEMAN
 public class UserLogin {
 
@@ -17,7 +14,7 @@ public class UserLogin {
     private static final String[] passwordClient = new String[100];
 
     public static void ClientRegister() {
-
+//register the client
         Scanner input = new Scanner(System.in);
 
         System.out.println("-----------------------------");
@@ -34,6 +31,7 @@ public class UserLogin {
     }
 
     public static void ClientInterface() {
+        //user login /register their account
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.println("User Registeration / User Log In");

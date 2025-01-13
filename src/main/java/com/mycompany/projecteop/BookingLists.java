@@ -8,10 +8,7 @@ import static com.mycompany.projecteop.UserBooking.bookingCount;
 import static com.mycompany.projecteop.UserBooking.bookingPackageId;
 import static com.mycompany.projecteop.UserBooking.bookings;
 
-/**
- *
- * @author faizd
- */
+
 //AMMAR FAIZ
 public class BookingLists {
 
@@ -22,12 +19,10 @@ public class BookingLists {
     }
     
       
-       
-        // Simulate selecting a package and booking
      
         
     public static void DisplayBookings() {
-
+//booking details that has been made and will be save
         System.out.println("=== Your Bookings ===");
         if (bookingCount == 0) {
             System.out.println("No bookings made yet.");

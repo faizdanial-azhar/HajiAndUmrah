@@ -9,10 +9,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- *
- * @author adamnaeman
- */
+
 //ADAM NAEMAN
 public class AdminManagement {
 
@@ -22,7 +19,7 @@ public class AdminManagement {
 
     public static void adminLogin() {
         Scanner input = new Scanner(System.in);
-
+//login using admin fix account to allow admin track their booking statistics
         System.out.println("ADMIN LOGIN");
         System.out.println("--------------------------------------");
         System.out.print("Username: ");

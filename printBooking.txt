@@ -1,14 +1,7 @@
 --------------------------
 Booking number -- 1
-Package id:2003
+Package id:1001
 
 Adults: 12
 Children: 12
-Total: RM 288000
---------------------------
-Booking number -- 2
-Package id:1002
-
-Adults: 12
-Children: 12
-Total: RM 672000
+Total: RM 792000

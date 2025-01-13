@@ -7,12 +7,10 @@ package com.mycompany.projecteop;
 
 import java.util.Scanner;
 
-/**
- *
- * @author adamnaeman
- */
+
 //ADAM ISKANDAR
 public class DeleteBooking {
+    
     public static void handleDeleteBooking() {
         Scanner input = new Scanner(System.in);
         

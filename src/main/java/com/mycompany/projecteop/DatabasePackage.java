@@ -4,11 +4,9 @@
  */
 package com.mycompany.projecteop;
 
-/**
- *
- * @author faizd
- */
+
 //ADAM ISKANDAR
+//place to store our package data and allow it be call from any class
 public class DatabasePackage {
    private final String packageName;
     private final int packageId;
@@ -64,25 +62,25 @@ public class DatabasePackage {
         return arrivalTime;
     }
 
-    
+    //package details
     public static DatabasePackage getHajiPackage1() {
-        return new DatabasePackage("Haji Package 1",1001, 33000, 20999, "15 May 2025", "15 June 2025", "19:00", "3:00");
+        return new DatabasePackage("Haji Package 1",1001, 33000, 20999, "15 May 2025", "15 June 2025", "19:00", "03:00");
     }
 
     public static DatabasePackage getHajiPackage2() {
-        return new DatabasePackage("Haji Package 2",1002, 28000, 18999, "23 May 2025", "10 June 2025", "22:00", "7:00");
+        return new DatabasePackage("Haji Package 2",1002, 28000, 18999, "23 May 2025", "10 June 2025", "22:00", "07:00");
     }
 
     public static DatabasePackage getHajiPackage3() {
-        return new DatabasePackage("Haji Package 3",1003, 40000, 24999, "10 May 2025", "1 July 2025", "20:00", "4:00");
+        return new DatabasePackage("Haji Package 3",1003, 40000, 24999, "10 May 2025", "1 July 2025", "20:00", "04:00");
     }
 
     public static DatabasePackage getUmrahPackage1() {
-        return new DatabasePackage("Umrah Package 1",2001, 8000, 5999, "12 January 2025", "31 January 2025", "15:00", "1:00");
+        return new DatabasePackage("Umrah Package 1",2001, 8000, 5999, "12 January 2025", "31 January 2025", "15:00", "01:00");
     }
 
     public static DatabasePackage getUmrahPackage2() {
-        return new DatabasePackage("Umrah Package 2",2002, 11000, 7989, "20 January 2025", "15 February 2025", "23:00", "9:00");
+        return new DatabasePackage("Umrah Package 2",2002, 11000, 7989, "20 January 2025", "15 February 2025", "23:00", "09:00");
     }
 
     public static DatabasePackage getUmrahPackage3() {
@@ -98,8 +96,8 @@ public class DatabasePackage {
         System.out.println("Children Price: RM " + childrenPrice);
         System.out.println("From Date: " + fromDate);
         System.out.println("To Date: " + toDate);
-        System.out.println("Departure Time: " + departureTime);
-        System.out.println("Arrival Time: " + arrivalTime);
+        System.out.println("Departure Time (MYT): " + departureTime);
+        System.out.println("Arrival Time (KST): " + arrivalTime);
     }
     
     

@@ -6,10 +6,7 @@ package com.mycompany.projecteop;
 
 import java.util.Scanner;
 
-/**
- *
- * @author faizd
- */
+
 //ADAM NAEMAN
 public class Account {
 
@@ -17,7 +14,7 @@ public class Account {
         Scanner input = new Scanner(System.in);
         while (true) {
             try {
-
+//sign in interface for user/admin
                 System.out.println("1.Log in As Client\n2.Log In As Admin\n3.Exit ");
                 System.out.println("--------------------------------------");
                  System.out.print("Choice: ");

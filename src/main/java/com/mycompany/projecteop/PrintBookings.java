@@ -12,13 +12,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-/**
- *
- * @author faizd
- */
+
 //ADAM ISKANDAR
 public class PrintBookings {
-    
+    //to print booking into text file that allow user to print it out
     public static void PrintBookings() {
           if (bookingCount == 0) {
             System.out.println("No booking made yet.");

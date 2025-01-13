@@ -7,11 +7,6 @@ package com.mycompany.projecteop;
 
 import java.util.Scanner;
 
-/**
- *
- * @author faizd
- */
-
 // AMMAR FAIZ
 public class UserBooking {
 
@@ -23,7 +18,8 @@ public class UserBooking {
 
     public static void SelectPackage() {
         Scanner input = new Scanner(System.in);
-
+        
+//user enter choose their package
         while (true) {
 
             System.out.print("(Haji -- H / Umrah - U):");
@@ -41,6 +37,7 @@ public class UserBooking {
     }
 
     public static void PackageHaji() {
+        //display package based on user choice
         Scanner input = new Scanner(System.in);
         int choice = 0;
         int adultPrice;
@@ -95,6 +92,8 @@ public class UserBooking {
     }
 
     public static void PackageUmrah() {
+        
+        //display umrah package based on user choice
         Scanner input = new Scanner(System.in);
         int choice = 0;
         int adultPrice;

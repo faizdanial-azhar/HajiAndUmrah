@@ -4,44 +4,50 @@
  */
 package com.mycompany.projecteop;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- *
- * @author faizd
- */
-//AMMAR FAIZ 
+
+// AMMAR FAIZ
 public class MainMenu {
 
     public static void mainMenu() {
         Scanner input = new Scanner(System.in);
-         System.out.println("--------------------------------------");
-        System.out.println("Hi, Welcome Home!");
-        System.out.println("1.Create New Booking.\n2.Delete Booking. \n3.Your Booking Details.\n4.Print Your Booking.\n5.Log Out");
-        while (true) {
-           System.out.println("--------------------------------------");
+        int choice = 0;
+        //user main menu that allow user create,delete,print their bookings
 
+        System.out.println("--------------------------------------");
+        System.out.println("Hi, Welcome Home!");
+        System.out.println("1. Create New Booking.");
+        System.out.println("2. Delete Booking.");
+        System.out.println("3. Your Booking Details.");
+        System.out.println("4. Print Your Booking.");
+        System.out.println("5. Log Out");
+
+        do {
+            try {
+                System.out.println("--------------------------------------");
                 System.out.print("Choose option: ");
-            int choice = input.nextInt();
-            System.out.println("--------------------------------------");
-            if (choice == 1) {
-                UserBooking.SelectPackage();
-                break;
-            } else if (choice == 2) {
-                DeleteBooking.handleDeleteBooking();
-                break;
-            } else if (choice == 3) {
-                BookingLists.HandleDisplayBookings();
-                break;
-            } else if (choice == 4) {
-                PrintBookings.PrintBookings();
-                break;
-            } else if (choice == 5) {
-                Account.AccountSignIn();
-                break;
-            } else {
-                System.out.println("*** Invalid Choice. Please enter valid one. ***");
+                choice = input.nextInt();
+                System.out.println("--------------------------------------");
+
+                if (choice < 1 || choice > 5) {
+                    System.out.println("*** Invalid Choice. Please enter a number between 1 and 5. ***");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("*** Invalid Input! Please enter a valid number. ***");
+                input.nextLine();
             }
+        } while (choice < 1 || choice > 5);
+
+        // Handle valid choices
+        switch (choice) {
+            case 1 -> UserBooking.SelectPackage();
+            case 2 -> DeleteBooking.handleDeleteBooking();
+            case 3 -> BookingLists.HandleDisplayBookings();
+            case 4 -> PrintBookings.PrintBookings();
+            case 5 -> Account.AccountSignIn();
+            default -> System.out.println("*** Unexpected error occurred. ***");
         }
     }
 }

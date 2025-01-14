@@ -16,6 +16,7 @@ public class DeleteBooking {
         
         if (UserBooking.bookingCount == 0) {
             System.out.println("No bookings available to delete.");
+            System.out.println("Adamn github");
             MainMenu.mainMenu();
             return;
         }

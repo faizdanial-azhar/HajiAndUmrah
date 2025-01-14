@@ -5,6 +5,7 @@
 package com.mycompany.projecteop;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 // AMMAR FAIZ
@@ -54,11 +55,15 @@ public class UserBooking {
         System.out.println("1.Haji 1st Package   2.Haji 2nd Package   3.Haji 3rd Package");
         System.out.println("---------------------------------------------------------------");
         do {
+            try{
             System.out.print("Your Package Number: ");
             choice = input.nextInt();
 
             if (choice != 1 && choice != 2 && choice != 3) {
                 System.out.println("*** Invalid package pls enter valid package! ***");
+            }}catch(InputMismatchException e){
+                System.out.println(" *** Invalid package pls enter valid package number! ***");
+                input.nextLine();
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);
@@ -109,11 +114,16 @@ public class UserBooking {
         System.out.println("1.Umrah 1st Package   2.Umrah 2nd Package   3.Umrah 3rd Package");
         System.out.println("---------------------------------------------------------------");
         do {
+            try{
             System.out.print("Your Package Number: ");
             choice = input.nextInt();
 
             if (choice != 1 && choice != 2 && choice != 3) {
                 System.out.println("*** Invalid package pls enter valid package! ***");
+            }
+            }catch(InputMismatchException e){
+                System.out.println("*** Invalid package pls enter valid package! ***");
+                input.nextLine();
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);

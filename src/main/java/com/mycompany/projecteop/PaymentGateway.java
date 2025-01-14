@@ -136,14 +136,14 @@ public static boolean PaymentMethod(int totalAmount, int adultPrice, int childre
 
             try {
                 paymentMethod = input.nextInt();
-                input.nextLine(); // Clear buffer
+                
 
                 if (paymentMethod >= 1 && paymentMethod <= 3) {
                     System.out.println(">>> Amount To Pay: RM " + totalAmount);
 
                     while (true) { // Loop to ensure valid input for Y/N
                         System.out.print("Enter Y to Pay or N to Cancel: ");
-                        String choice = input.nextLine().trim();
+                        String choice = input.next();
 
                         if (choice.equalsIgnoreCase("y")) {
                             return true; // Payment successful
@@ -159,7 +159,7 @@ public static boolean PaymentMethod(int totalAmount, int adultPrice, int childre
                 }
             } catch (InputMismatchException e) {
                 System.out.println("*** Invalid input. Please enter a valid number for the payment method. ***");
-                input.nextLine(); // Clear invalid input
+                input.nextLine(); 
             }
         }
     } catch (Exception e) {
@@ -179,7 +179,7 @@ public static void handleCancellation( String Choice,int totalAmount, int adultP
         try {
             System.out.print("Choose an option: ");
             int innerChoice = input.nextInt();
-            input.nextLine(); // Clear buffer
+            
 
             switch (innerChoice) {
                 case 1 -> {

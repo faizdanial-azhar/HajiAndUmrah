@@ -4,6 +4,7 @@
  */
 package com.mycompany.projecteop;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -33,7 +34,7 @@ public class Account {
                 }else{
                     System.out.println("*** Invalid Choice, log in again. ***");
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("*** Error in system, log in again. ***");
                 input.nextLine();
             }
